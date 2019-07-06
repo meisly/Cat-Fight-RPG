@@ -25,6 +25,7 @@ $(".other-btn").click(function () {
 
 });
 
+
 class Character {
     constructor (name, health, baseAttack, counter) {
         this.name = name;
@@ -45,10 +46,69 @@ class Character {
         $("player1-health").html(`You have ${this.health} hp`);
         $("npc-health").html(`${enemy.name} has ${enemy.health} hp`)
     }
+
+    static createCharacter(charVar) {
+
+        switch (charVar) {
+            case "catTruck": 
+                return new Character ("Cat Truck", 150, 5, 20);
+                
+            case "catStevens":
+                return new Character ("Cat Stevens", 120, 2, 50);
+                
+            case "grumpyCat":
+                return new Character ("Grumpy Cat", 70, 10, 15);
+                
+            case "katO":
+                return new Character ("Katherine", 300, 2, 5);
+                
+            case "frenchie":
+                return new Character ("Frenchie", 100, 7, 10);
+                
+        }
+    }
+}
+let enemy, player;
+function pickChar (charVar) {
+    $("#character-bank").toggle();
+    $("#character-bank-small").toggle();
+    player = Character.createCharacter(charVar);
+    $("#game-info").text("Choose your first oponent!");
+    
 }
 
-var catTruck = {name: "Cat Truck", health: 150, baseAttack: 5, counter: 20};
-var
+function pickEnemy (charVar) {
+    enemy = Character.createCharacter(charVar)
+    $(".char-pic-con-small").css("pointer-events", "none");
+    $("#game-info").text("Ready, Fight!");
 
-$("#Cat-truck-btn").click(function () {
-    $("#cat-truck-bio").toggle();
+}
+function updateHP () {
+    $("#player1-health").html(player.name + " has "+ player.health + " hp");
+    $("#npc-health").html(enemy.name + " has " + enemy.health + " hp");
+}
+
+$(".choose-char-btn").click(function () {
+    char = $(this).attr("char");
+    charImg = $($(this).attr("pic"));
+    $("#player1").prepend(charImg);
+    $(charImg).removeClass();
+    $(charImg).addClass("fighter-pic");
+    $("#cbs-"+char).toggle();
+    pickChar(char);
+});
+
+$(".char-pic-con-small").click(function () {
+    char = $(this).attr("char");
+    charImg = $($(this).attr("pic"));
+    $("#npc").prepend(charImg);
+    $(charImg).removeClass();
+    $(charImg).addClass("fighter-pic");
+    $("#cbs-"+char).addClass("active-fighter");
+    pickEnemy(char);
+    updateHP()
+});
+
+
+
+
