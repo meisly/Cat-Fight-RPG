@@ -1,0 +1,73 @@
+html, main {
+    height: 100%;
+}
+body {
+    background-image: url("../images/arena.png");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-color: #2d221b;
+   
+}
+.hidden {
+    display: none;
+}
+nav {
+    margin-bottom: 1em;
+}
+main {
+    
+    min-height: 100vh;
+}
+* {
+    box-sizing: border-box;
+}
+.char-pic-con {
+    display: inline-block;
+    padding: .25em;
+    margin: 0;
+    border: solid black;
+    width: 75%;
+    margin: 4px;
+    border-radius: 7px;
+}
+#character-bank {
+    border-radius: 25px;
+    background-color: rgb(255, 176, 58);
+    padding: 2em;
+    text-align: center;
+    font-family: 'Bungee Inline', cursive;
+    border: solid black;
+    max-width: 90%;
+    margin: auto;
+}
+#character-bank h1 {
+    font-size: 4em;
+}
+.char-title {
+    font-size: 15px;
+}
+#character-bank img {
+    width: 90%;
+    border-radius: 10px;
+}
+.bio {
+    z-index: 10;
+    margin: auto;
+    padding: 30px;
+    border: solid black;
+    border-radius: 10px;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    max-width: 60%;
+    background-color: darkslategrey;
+    font-size: x-large;
+    color: chocolate;
+    font-family: 'Homenaje', sans-serif;
+
+}
+#character-bank-small {
+    position: absolute;
+    bottom: 10px;
+}
