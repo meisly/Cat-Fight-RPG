@@ -13,7 +13,7 @@
 </head>
 <nav class="navbar navbar-dark bg-dark text-white">
     <div id="title" class="col-12">
-        Cat Ninja Fighters
+        Cat Fight
     </div>
 </nav>
 <main class="container">
@@ -145,15 +145,20 @@
     <div class="row">
         <div id="arena" class="col-12">
             <div class="row">
+                <div class="col-6 fighter-cont" id="player1"></div>
+                <div class="col-6 fighter-cont" id="npc"></div>
+            </div>
+            <div class="row">
                 <div id="player1-health" class="health-bar col-6"></div>
                 <div id="npc-health" class="health-bar col-6"></div>
             </div>
             <div class="row">
                 <h1 id="game-info" class="col-12"></h1>
+                <h5 id="game-update" class="col-12"></h5>
             </div>
+
             <div class="row">
-                <div class="col-6 fighter-cont" id="player1"></div>
-                <div class="col-6 fighter-cont" id="npc"></div>
+                <button id="attack-btn" class="attack-btn hidden">Attack!</button>
             </div>
         </div>
     </div>
