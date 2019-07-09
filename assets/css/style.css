@@ -124,3 +124,7 @@ main {
 .active-fighter {
     opacity: 0.3;
 }
+.dead-fighter {
+    pointer-events: none;
+    color: red;
+}
