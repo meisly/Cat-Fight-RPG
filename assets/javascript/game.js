@@ -25,6 +25,8 @@ $(".other-btn").click(function () {
 
 });
 
+let enemy, player;
+let enemiesDefeated = 0;
 
 class Character {
     constructor (name, health, baseAttack, counter, id) {
@@ -46,19 +48,19 @@ class Character {
         `);
         $("#game-info").addClass("hidden");
     }
-isDed () {
-    if (this.health <=0) {
-        return true;
+    isDed () {
+        if (this.health <=0) {
+            return true;
+        }
     }
-}
     static createCharacter(charVar) {
         switch (charVar) {
             case "catTruck": 
-                return new Character ("Cat Truck", 150, 5, 20, "catTruck");    
+                return new Character ("Cat Truck", 150, 5, 17, "catTruck");    
             case "catStevens":
-                return new Character ("Cat Stevens", 120, 2, 50, "catStevens");
+                return new Character ("Cat Stevens", 120, 2, 12, "catStevens");
             case "grumpyCat":
-                return new Character ("Grumpy Cat", 70, 10, 15, "grumpyCat");
+                return new Character ("Grumpy Cat", 70, 10, 20, "grumpyCat");
             case "katO":
                 return new Character ("Katherine", 300, 2, 5, "katO");
             case "frenchie":
@@ -66,7 +68,7 @@ isDed () {
         }
     }
 }
-let enemy, player;
+
 function pickChar (charVar) {
     $("#character-bank").toggle();
     $("#character-bank-small").toggle();
@@ -85,7 +87,20 @@ function updateHP () {
     $("#player1-health").html(player.name + " has "+ player.health + " hp");
     $("#npc-health").html(enemy.name + " has " + enemy.health + " hp");
 }
-
+function restart () {
+    var startOver = $("<button>");
+    $("#game-info").append(startOver);
+    startOver.html("Try Again?");
+    startOver.click( function () {
+        location.reload();
+        })
+}
+function checkWinState () {
+    if (enemiesDefeated === 4) {
+        $("#game-info").text(`Congratulations, you have defeated ${enemy.name} and won the tournament!  You are a superior cat figher!`)
+        
+    }
+}
 $(".choose-char-btn").click(function () {
     char = $(this).attr("char");
     charImg = $($(this).attr("pic"));
@@ -95,7 +110,7 @@ $(".choose-char-btn").click(function () {
     $("#cbs-"+char).toggle();
     pickChar(char);
 });
-
+// choose oponent 
 $(".char-pic-con-small").click(function () {
     char = $(this).attr("char");
     charImg = $($(this).attr("pic"));
@@ -106,21 +121,13 @@ $(".char-pic-con-small").click(function () {
     $("#attack-btn").toggle();
     pickEnemy(char);
     updateHP()
+    
 });
-
+//attack button functions
 $("#attack-btn").click(function () {
+    $("#game-update").removeClass("hidden");
     player.attack(enemy);
-    if (player.isDed()) {
-        $("#game-info").removeClass("hidden");
-        $("#attack-btn").toggle();
-        $("#game-info").text("You lost.  You're a terrible cat fighter");
-        var startOver = $("<button>");
-        $("#game-info").append(startOver);
-        startOver.html("Try Again?");
-        startOver.click( function () {
-            location.reload();
-        })
-    }
+    
     if (enemy.isDed()) {
         $("#game-info").text(`Congratulations, you have defeated ${enemy.name}! Choose your next oponent.`)
         $("#game-info").removeClass("hidden");
@@ -128,8 +135,17 @@ $("#attack-btn").click(function () {
         $("#npc").html("");
         $("#attack-btn").toggle();
         $("#cbs-"+ enemy.id).addClass("dead-fighter");
-        $(".char-pic-con-small").css("pointer-events", "auto");
+        $(".char-pic-con-small").css("pointer-events", "auto");  
+        enemiesDefeated++;
+
     }
+    if (player.isDed()) {
+        $("#game-info").removeClass("hidden");
+        $("#attack-btn").toggle();
+        $("#game-info").text("You lost.  You're a terrible cat fighter");
+        restart();
+    }
+    checkWinState ()
     updateHP();
 
 });

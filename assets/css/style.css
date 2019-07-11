@@ -86,7 +86,7 @@ main {
 
 }
 #character-bank-small {
-    position: absolute;
+    position: relative;
     bottom: 10px;
 }
 .fighter-pic {
@@ -120,6 +120,10 @@ main {
     position: relative;
     font-weight: bolder;
     color: #ff6000;
+}
+.attack-btn-row {
+    position: relative;
+    bottom: 30px;
 }
 .active-fighter {
     opacity: 0.3;
