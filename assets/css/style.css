@@ -30,6 +30,7 @@ main {
     width: 75%;
     margin: 4px;
     border-radius: 7px;
+    cursor: pointer;
 }
 .char-pic-con-small {
     display: inline-block;
@@ -39,6 +40,7 @@ main {
     width: 75%;
     max-height: 120px;
     border-radius: 7px;
+    cursor: pointer;
 }
 .char-pic-con-small img {
     display: block;
