@@ -89,8 +89,9 @@ function updateHP () {
 }
 function restart () {
     var startOver = $("<button>");
-    $("#game-info").append(startOver);
+    $("#restart").append(startOver);
     startOver.html("Try Again?");
+    startOver.addClass("btn btn-secondary");
     startOver.click( function () {
         location.reload();
         })

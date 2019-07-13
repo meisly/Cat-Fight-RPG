@@ -138,3 +138,6 @@ main {
     pointer-events: none;
     color: red;
 }
+.center {
+    text-align: center;
+}
