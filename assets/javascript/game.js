@@ -108,9 +108,10 @@ $(".choose-char-btn").click(function () {
     $(charImg).removeClass();
     $(charImg).addClass("fighter-pic");
     $("#cbs-"+char).toggle();
+    $(".char-title").addClass("hidden");
     pickChar(char);
 });
-// choose oponent 
+// choose opponent 
 $(".char-pic-con-small").click(function () {
     char = $(this).attr("char");
     charImg = $($(this).attr("pic"));
@@ -119,6 +120,7 @@ $(".char-pic-con-small").click(function () {
     $(charImg).addClass("fighter-pic");
     $("#cbs-"+char).addClass("active-fighter");
     $("#attack-btn").toggle();
+    $(".char-title").addClass("hidden");
     pickEnemy(char);
     updateHP()
     
@@ -129,7 +131,7 @@ $("#attack-btn").click(function () {
     player.attack(enemy);
     
     if (enemy.isDed()) {
-        $("#game-info").text(`Congratulations, you have defeated ${enemy.name}! Choose your next oponent.`)
+        $("#game-info").text(`Congratulations, you have defeated ${enemy.name}! Choose your next opponent.`)
         $("#game-info").removeClass("hidden");
         $("#game-update").addClass("hidden");
         $("#npc").html("");
